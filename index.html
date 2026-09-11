@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyKit | Student Study Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= SIGNUP PAGE ================= -->
+
+<section id="signupPage" class="page">
+    <div class="signup-box">
+
+        <div class="logo">📚 StudyKit</div>
+
+        <h1>Welcome to StudyKit</h1>
+        <p class="subtitle">
+            Your smart study companion
+        </p>
+
+        <form id="signupForm">
+
+            <label for="studentName">Your Name</label>
+            <input
+                type="text"
+                id="studentName"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="studentEmail">Email</label>
+            <input
+                type="email"
+                id="studentEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="studentClass">Class</label>
+            <select id="studentClass" required>
+                <option value="">Select your class</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+            </select>
+
+            <button type="submit" class="primary-btn">
+                Enter StudyKit →
+            </button>
+
+        </form>
+    </div>
+</section>
+
+
+<!-- ================= MAIN WEBSITE ================= -->
+
+<section id="mainPage" class="hidden">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="brand">
+            📚 StudyKit
+        </div>
+
+        <nav>
+            <button onclick="showSection('home')">Home</button>
+            <button onclick="showSection('assignments')">Assignments</button>
+            <button onclick="showSection('tools')">Tools</button>
+            <button onclick="showSection('help')">Help</button>
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+
+    </header>
+
+
+    <!-- ================= HOME ================= -->
+
+    <main id="homeSection" class="section">
+
+        <div class="welcome-box">
+            <div>
+                <p class="small-text">Good to see you 👋</p>
+                <h1>Welcome <span id="displayName"></span>!</h1>
+                <p id="displayClass"></p>
+            </div>
+
+            <div class="streak-box">
+                🔥
+                <strong>Your daily streak</strong>
+                <span id="streakDisplay">1/30</span>
+            </div>
+        </div>
+
+
+        <h2 class="section-title">What do you want to study today?</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card" onclick="showSection('assignments')">
+                <div class="card-icon">📝</div>
+                <h3>Assignments</h3>
+                <p>Take today's Maths and Science MCQs.</p>
+            </div>
+
+            <div class="feature-card" onclick="openAverageCalculator()">
+                <div class="card-icon">📊</div>
+                <h3>Average Marks</h3>
+                <p>Calculate your marks and percentage.</p>
+            </div>
+
+            <div class="feature-card" onclick="openCalculator()">
+                <div class="card-icon">🧮</div>
+                <h3>Calculator</h3>
+                <p>Use a working scientific-style calculator.</p>
+            </div>
+
+            <div class="feature-card" onclick="openNotes()">
+                <div class="card-icon">📒</div>
+                <h3>Quick Notes</h3>
+                <p>Save important study notes.</p>
+            </div>
+
+            <div class="feature-card" onclick="openTimer()">
+                <div class="card-icon">⏱️</div>
+                <h3>Study Timer</h3>
+                <p>Focus with a 25-minute study session.</p>
+            </div>
+
+            <div class="feature-card" onclick="openChatGPT()">
+                <div class="card-icon">🤖</div>
+                <h3>Ask ChatGPT</h3>
+                <p>Get help understanding difficult topics.</p>
+            </div>
+
+            <div class="feature-card" onclick="showStudyTip()">
+                <div class="card-icon">💡</div>
+                <h3>Study Tips</h3>
+                <p>Get a useful study tip.</p>
+            </div>
+
+            <div class="feature-card" onclick="showSection('history')">
+                <div class="card-icon">🏆</div>
+                <h3>My Scores</h3>
+                <p>See your previous assignment scores.</p>
+            </div>
+
+        </div>
+
+
+        <div class="quote-box">
+            <span>💙</span>
+            <p id="dailyQuote">
+                Small progress every day becomes big progress.
+            </p>
+        </div>
+
+    </main>
+
+
+    <!-- ================= ASSIGNMENTS ================= -->
+
+    <main id="assignmentsSection" class="section hidden">
+
+        <button class="back-btn" onclick="showSection('home')">
+            ← Back to Home
+        </button>
+
+        <div class="page-heading">
+            <span>📝</span>
+            <div>
+                <h1>Daily Assignments</h1>
+                <p id="assignmentClassText"></p>
+            </div>
+        </div>
+
+
+        <!-- SUBJECT SELECTION -->
+
+        <div id="subjectSelection">
+
+            <h2>Choose a Subject</h2>
+            <p class="muted">
+                Your assignments are automatically matched to your class.
+            </p>
+
+            <div class="subject-grid">
+
+                <div class="subject-card maths" onclick="startAssignment('Maths')">
+                    <div>📐</div>
+                    <h2>Maths</h2>
+                    <p>10 MCQs • Easy → Hard</p>
+                    <button>Start Maths →</button>
+                </div>
+
+                <div class="subject-card science" onclick="startAssignment('Science')">
+                    <div>🔬</div>
+                    <h2>Science</h2>
+                    <p>10 MCQs • Easy → Hard</p>
+                    <button>Start Science →</button>
+                </div>
+
+            </div>
+
+            <div class="assignment-info">
+                <strong>📅 Daily Assignment</strong>
+                <p>
+                    A different set of questions is selected each day.
+                    Your previous scores are saved on this device.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- QUIZ -->
+
+        <div id="quizArea" class="hidden">
+
+            <div class="quiz-header">
+                <div>
+                    <p id="quizDate"></p>
+                    <h2 id="quizTitle"></h2>
+                </div>
+
+                <div class="question-count">
+                    <span id="questionNumber">1</span>/10
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div id="quizProgress"></div>
+            </div>
+
+            <form id="quizForm">
+
+                <div id="questionsContainer"></div>
+
+                <button type="submit" class="primary-btn submit-btn">
+                    Submit Assignment ✓
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div id="resultArea" class="result-box hidden">
+
+            <div class="result-icon">🎉</div>
+
+            <h1>Assignment Completed!</h1>
+
+            <div class="score-big">
+                <span id="resultScore">0/10</span>
+            </div>
+
+            <h2 id="resultPercentage">0%</h2>
+
+            <p id="resultMessage"></p>
+
+            <div class="result-actions">
+                <button class="primary-btn" onclick="showSection('assignments')">
+                    Try Another Assignment
+                </button>
+
+                <button class="secondary-btn" onclick="showSection('history')">
+                    View Previous Scores
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= HISTORY ================= -->
+
+    <main id="historySection" class="section hidden">
+
+        <button class="back-btn" onclick="showSection('home')">
+            ← Back to Home
+        </button>
+
+        <div class="page-heading">
+            <span>🏆</span>
+            <div>
+                <h1>Previous Assignment Scores</h1>
+                <p>Your saved assignment history</p>
+            </div>
+        </div>
+
+        <div id="historyContainer"></div>
+
+    </main>
+
+
+    <!-- ================= TOOLS ================= -->
+
+    <main id="toolsSection" class="section hidden">
+
+        <button class="back-btn" onclick="showSection('home')">
+            ← Back to Home
+        </button>
+
+        <div class="page-heading">
+            <span>🛠️</span>
+            <div>
+                <h1>Study Tools</h1>
+                <p>Useful tools for everyday studying</p>
+            </div>
+        </div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card" onclick="openAverageCalculator()">
+                <span>📊</span>
+                <h3>Average Marks Calculator</h3>
+                <p>Calculate total, average and percentage.</p>
+            </div>
+
+            <div class="tool-card" onclick="openCalculator()">
+                <span>🧮</span>
+                <h3>Calculator</h3>
+                <p>Perform mathematical calculations.</p>
+            </div>
+
+            <div class="tool-card" onclick="openNotes()">
+                <span>📒</span>
+                <h3>Quick Notes</h3>
+                <p>Save your study notes.</p>
+            </div>
+
+            <div class="tool-card" onclick="openTimer()">
+                <span>⏱️</span>
+                <h3>Study Timer</h3>
+                <p>Focus for 25 minutes.</p>
+            </div>
+
+            <div class="tool-card" onclick="showStudyTip()">
+                <span>💡</span>
+                <h3>Study Tips</h3>
+                <p>Get a random study tip.</p>
+            </div>
+
+            <div class="tool-card" onclick="openChatGPT()">
+                <span>🤖</span>
+                <h3>Ask ChatGPT</h3>
+                <p>Open ChatGPT for study help.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= HELP ================= -->
+
+    <main id="helpSection" class="section hidden">
+
+        <button class="back-btn" onclick="showSection('home')">
+            ← Back to Home
+        </button>
+
+        <div class="help-box">
+
+            <div class="help-icon">💙</div>
+
+            <h1>Need Help?</h1>
+
+            <p>
+                If you have a problem with StudyKit or have a suggestion,
+                you can contact us directly.
+            </p>
+
+            <a
+                class="email-btn"
+                href="mailto:sisodiasoumya10@gmail.com?subject=StudyKit%20Help"
+            >
+                📩 Email StudyKit
+            </a>
+
+            <p class="email-text">
+                sisodiasoumya10@gmail.com
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+        <p>Made with 💙 by <strong>Soumya Sisodia</strong></p>
+        <p>© 2026 StudyKit • Study smarter, every day.</p>
+    </footer>
+
+</section>
+
+
+<!-- ================= AVERAGE MARKS MODAL ================= -->
+
+<div id="averageModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal('averageModal')">×</button>
+
+        <h2>📊 Average Marks Calculator</h2>
+
+        <p class="muted">
+            Enter marks obtained and maximum marks.
+        </p>
+
+        <div id="marksRows">
+
+            <div class="marks-row">
+                <input type="text" placeholder="Subject">
+                <input type="number" class="obtained" placeholder="Obtained">
+                <input type="number" class="maximum" placeholder="Out of">
+            </div>
+
+            <div class="marks-row">
+                <input type="text" placeholder="Subject">
+                <input type="number" class="obtained" placeholder="Obtained">
+                <input type="number" class="maximum" placeholder="Out of">
+            </div>
+
+            <div class="marks-row">
+                <input type="text" placeholder="Subject">
+                <input type="number" class="obtained" placeholder="Obtained">
+                <input type="number" class="maximum" placeholder="Out of">
+            </div>
+
+            <div class="marks-row">
+                <input type="text" placeholder="Subject">
+                <input type="number" class="obtained" placeholder="Obtained">
+                <input type="number" class="maximum" placeholder="Out of">
+            </div>
+
+            <div class="marks-row">
+                <input type="text" placeholder="Subject">
+                <input type="number" class="obtained" placeholder="Obtained">
+                <input type="number" class="maximum" placeholder="Out of">
+            </div>
+
+        </div>
+
+        <button class="secondary-btn" onclick="addMarksRow()">
+            + Add Subject
+        </button>
+
+        <button class="primary-btn full-btn" onclick="calculateAverage()">
+            Calculate
+        </button>
+
+        <div id="averageResult" class="calculator-result">
+            Enter your marks above.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= REAL CALCULATOR ================= -->
+
+<div id="calculatorModal" class="modal hidden">
+
+    <div class="calculator">
+
+        <button class="close-btn" onclick="closeModal('calculatorModal')">×</button>
+
+        <h2>🧮 Calculator</h2>
+
+        <input
+            type="text"
+            id="calcDisplay"
+            class="calc-display"
+            value="0"
+            readonly
+        >
+
+        <div class="calc-buttons">
+
+            <button onclick="clearCalc()" class="danger">AC</button>
+            <button onclick="deleteCalc()">DEL</button>
+            <button onclick="percentageCalc()">%</button>
+            <button onclick="calculatorInput('/')">÷</button>
+
+            <button onclick="calculatorInput('7')">7</button>
+            <button onclick="calculatorInput('8')">8</button>
+            <button onclick="calculatorInput('9')">9</button>
+            <button onclick="calculatorInput('*')">×</button>
+
+            <button onclick="calculatorInput('4')">4</button>
+            <button onclick="calculatorInput('5')">5</button>
+            <button onclick="calculatorInput('6')">6</button>
+            <button onclick="calculatorInput('-')">−</button>
+
+            <button onclick="calculatorInput('1')">1</button>
+            <button onclick="calculatorInput('2')">2</button>
+            <button onclick="calculatorInput('3')">3</button>
+            <button onclick="calculatorInput('+')">+</button>
+
+            <button onclick="calculatorInput('0')" class="zero">0</button>
+            <button onclick="calculatorInput('.')">.</button>
+            <button onclick="calculateExpression()" class="equals">=</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NOTES MODAL ================= -->
+
+<div id="notesModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal('notesModal')">×</button>
+
+        <h2>📒 Quick Notes</h2>
+
+        <textarea
+            id="notes"
+            placeholder="Write your study notes here..."
+        ></textarea>
+
+        <button class="primary-btn full-btn" onclick="saveNotes()">
+            Save Notes
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TIMER MODAL ================= -->
+
+<div id="timerModal" class="modal hidden">
+
+    <div class="modal-content timer-content">
+
+        <button class="close-btn" onclick="closeModal('timerModal')">×</button>
+
+        <h2>⏱️ Study Timer</h2>
+
+        <div id="timerDisplay">25:00</div>
+
+        <div class="timer-buttons">
+
+            <button class="primary-btn" onclick="startTimer()">
+                Start
+            </button>
+
+            <button class="secondary-btn" onclick="pauseTimer()">
+                Pause
+            </button>
+
+            <button class="secondary-btn" onclick="resetTimer()">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MESSAGE MODAL ================= -->
+
+<div id="messageModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal('messageModal')">×</button>
+
+        <h2 id="messageTitle"></h2>
+
+        <p id="messageText"></p>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
